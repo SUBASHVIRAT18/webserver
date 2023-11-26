@@ -28,7 +28,54 @@ Testing the webserver
 
 ## PROGRAM:
 
+from http.server import HTTPServer,BaseHTTPRequestHandler
+content='''
+ <!doctype html>
+ <html>
+ <head>
+ <title> My Web Server</title>
+ </head>
+ <body>
+ <h1>Top Five Web Application Development Frameworks</h1>
+ <h2>1.Django</h2>
+ <h2>2. MEAN Stack</h2>
+<h2>3. React </h2>
+ <h2>4. String </h2>
+ <h2>5. MERN Stack</h2>
+ </body>
+ </html>
+ '''
+class MyServer(BaseHTTPRequestHandler):
+def do_GET(self):
+print("Get request received...")
+self.send_response(200) 
+self.send_header("content-type", "text/html") 
+self.end_headers()
+self.wfile.write(content.encode())
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
+httpd.serve_forever()
+![serveroutput](serveroutput.png)
+![serveroutput](clientoutput.png)
+class MyServer(BaseHTTPRequestHandler):
+def do_GET(self):
+print("Get request received...")
+self.send_response(200) 
+self.send_header("content-type", "text/html") 
+self.end_headers()
+self.wfile.write(content.encode())
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
+httpd.serve_forever()
+
 ## OUTPUT:
+server output:
+![output 1](https://github.com/SUBASHVIRAT18/webserver/assets/147473303/9a5db41f-2337-4239-9f91-6a5cda896a89)
+client output:
+![output 2](https://github.com/SUBASHVIRAT18/webserver/assets/147473303/945fdd42-a021-4a89-9e09-3f048c4d04a0)
+
 
 ## RESULT:
 The program is executed succesfully
